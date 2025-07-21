@@ -1,5 +1,7 @@
+import { Link } from 'expo-router';
 import { Text, View } from "react-native";
 import { styles } from "./components/ThemedText";
+
 export default function Index() {
   return (
     <View
@@ -12,14 +14,15 @@ export default function Index() {
       }}
     >
       <Text style={styles.text01}>
-        Bloc Index : Page d'accueil de l'application
+        
       </Text>
 
       <Text>Navigation :</Text>
-
+      
       <View style={{padding: 10, backgroundColor:"#c5c5c5"}}>
-          <Text>1. Login (via google)</Text>
-          <Text>a - Dashbboard </Text>
+        <Link href="/pages/login" style={styles.text01}>
+        Go to Login Page (API)
+      </Link>          <Text>a - Dashbboard </Text>
       </View>
             <Text>2. Register ?</Text>
 
