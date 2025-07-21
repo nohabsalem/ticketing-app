@@ -1,5 +1,5 @@
 import { Text, View } from "react-native";
-
+import { styles } from "./components/ThemedText";
 export default function Index() {
   return (
     <View
@@ -11,7 +11,9 @@ export default function Index() {
         
       }}
     >
-      <Text>Bloc Index :</Text>
+      <Text style={styles.text01}>
+        Bloc Index : Page d'accueil de l'application
+      </Text>
 
       <Text>Navigation :</Text>
 
