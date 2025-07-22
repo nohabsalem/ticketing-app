@@ -8,6 +8,10 @@ type Props =  TextProps &{
    */
     text?: string,
     color?: string
+    button?: string,
+    buttonText?: string,
+    input?: string,
+  
 }
 
 export const styles = StyleSheet.create ({
@@ -51,11 +55,78 @@ export const styles = StyleSheet.create ({
     color: "#0062ff",
     fontWeight: "black",
     fontFamily: "poppins",
-  }
+  },
 
+  
+  title: {
+    fontSize: 25,
+    color: "#fe0000",
+    fontWeight: "bold",
+    fontFamily: "poppins",
+  },
+  
+  formcontainer: {
+    alignSelf: 'center',
+    alignItems: 'center',
+    padding: 20,
+    backgroundColor: '#fff',
+    borderRadius: 10,
+    shadowColor: '#000',
+  },
+  
+  formtitle: {
+    fontSize: 25,
+    color: "#0062ff",
+    fontWeight: "bold",
+    fontFamily: "poppins",
+  },
+  
+  label: {
+    fontSize: 16,
+    color: '#333',
+    marginBottom: 8,
+    fontFamily: "poppins",
+  },
+
+  input: {
+    height: 30,
+    borderColor: '#ccc',
+    borderWidth: 1,
+    borderRadius: 10,
+    paddingHorizontal: 20,
+    paddingVertical: 5,
+    marginBottom: 16,
+  },
+
+  button: {
+    backgroundColor: '#007AFF',
+    paddingHorizontal: 20,
+    paddingVertical: 5,
+    borderRadius: 10,
+    alignItems: 'center',
+    fontWeight: 'bold',
+    marginBottom: 10,
+   
+  },
+
+  buttonText: {
+    color: '#fff',
+    fontSize: 16,
+    fontWeight: 'bold',
+  },
+
+  googleButton: {
+    backgroundColor: '#4285F4',
+    paddingHorizontal: 20,
+    paddingVertical: 5,
+    borderRadius: 10,
+    alignItems: 'center',
+    fontWeight: 'bold',
+    color: '#fff',
+  },
 });
 
 
-export default function ThemedText({ text, color, ...rest }: Props) {
+export default function ThemedText({ text, color, button, buttonText, input, ...rest }: Props) {
     
 }
