@@ -71,7 +71,6 @@ export const styles = StyleSheet.create ({
     padding: 20,
     backgroundColor: '#fff',
     borderRadius: 10,
-    shadowColor: '#000',
   },
   
   formtitle: {
