@@ -25,6 +25,7 @@ const tickets = [
     date: "19/01/25",
     description:
       "Impossible de me connecter à la Plateforme, pourtant j'ai mis les bonnes cordonnées",
+    attachment: "Screenshot985ad.jpg",
   },
   {
     id: "2",
@@ -33,6 +34,7 @@ const tickets = [
     date: "21/12/25",
     description:
       "L'affichage responsive n'est pas bien respecté sur toutes les pages ",
+    attachment: "responsive-img.jpg",
   },
   {
     id: "3",
@@ -41,8 +43,8 @@ const tickets = [
     date: "21/12/25",
     description:
       "Malgré ma ponctualité et mon assiduité au travail, je n'ai pas été payé.e ",
+    attachment: "bank.jpg",
   },
-  { id: "4", title: "Erreur 404", priority: "modérée", date: "21/09/25" },
 ];
 
 export default function TicketList() {
@@ -79,6 +81,7 @@ export default function TicketList() {
                     priority: item.priority,
                     date: item.date,
                     description: item.description,
+                    attachment: item.attachment,
                   },
                 })
               }
