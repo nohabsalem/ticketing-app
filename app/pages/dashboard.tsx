@@ -14,7 +14,7 @@ export default function Dashboard() {
         <View style={styles.statsContainer}>
           <View style={[styles.card, { borderColor: "#4ecdc4" }]}>
             {/* <Text style={styles.label}>Tickets ouverts :</Text> */}
-            <Link href="/pages/tickets/ticket-detail" style={styles.label}>
+            <Link href="/pages/tickets/ticket-list" style={styles.label}>
               Tickets Ouverts :{" "}
             </Link>
 
@@ -22,7 +22,7 @@ export default function Dashboard() {
           </View>
 
           <View style={[styles.card, { borderColor: "#ff6b6b" }]}>
-            <Link href="/pages/tickets/ticket-detail" style={styles.label}>
+            <Link href="/pages/tickets/ticket-list" style={styles.label}>
               Tickets Fermés :{" "}
             </Link>{" "}
             <Text style={styles.number}>{ticketsFermes}</Text>
@@ -30,7 +30,7 @@ export default function Dashboard() {
         </View>
 
         <View style={styles.totalBox}>
-          <Link href="/pages/tickets/ticket-detail" style={styles.label}>
+          <Link href="/pages/tickets/ticket-list" style={styles.label}>
             Total de tickets :{" "}
           </Link>{" "}
           <Text style={styles.total}>{totalTickets}</Text>
@@ -38,7 +38,7 @@ export default function Dashboard() {
 
         <View style={styles.ticketsInfo}>
           <Text style={styles.noTicket}>• Vous n'avez ouvert aucun ticket</Text>
-          <View style={styles.button2}>
+          <View>
             <Button
               title="Créer un nouveau ticket"
               onPress={() => console.log("Créer un ticket")}
