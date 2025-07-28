@@ -18,10 +18,30 @@ const options = [
 ];
 
 const tickets = [
-  { id: "1", title: "Connexion impossible", priority: "urgent" },
-  { id: "2", title: "Bug mineur sur l’UI", priority: "weak" },
-  { id: "3", title: "Problème de paiement", priority: "important" },
-  { id: "4", title: "Erreur 404", priority: "moderate" },
+  {
+    id: "1",
+    title: "Connexion impossible",
+    priority: "urgent",
+    date: "19/01/25",
+    description:
+      "Impossible de me connecter à la Plateforme, pourtant j'ai mis les bonnes cordonnées",
+  },
+  {
+    id: "2",
+    title: "Bug mineur sur l’UI",
+    priority: "weak",
+    date: "21/12/25",
+    description:
+      "L'affichage responsive n'est pas bien respecté sur toutes les pages ",
+  },
+  {
+    id: "3",
+    title: "Problème de paiement",
+    priority: "important",
+    date: "21/12/25",
+    description: "Malgré ma ponctualité, je n'ai pas été payé.e ",
+  },
+  { id: "4", title: "Erreur 404", priority: "moderate", date: "21/09/25" },
 ];
 
 export default function TicketList() {
@@ -56,6 +76,8 @@ export default function TicketList() {
                     id: item.id,
                     title: item.title,
                     priority: item.priority,
+                    date: item.date,
+                    description: item.description,
                   },
                 })
               }

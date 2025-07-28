@@ -1,23 +1,25 @@
 import { Link, useLocalSearchParams } from "expo-router";
-import { Button, Text, TextInput, View } from "react-native";
+import { Button, Text, View } from "react-native";
 import { styles } from "../../components/ThemedText";
+
 export default function TicketDetail() {
-  const { id, title, priority } = useLocalSearchParams();
+  const { id, title, priority, date, description } = useLocalSearchParams();
 
   return (
     <>
       <View style={{ padding: 20 }}>
         <Text style={{ fontSize: 24, fontWeight: "bold", marginBottom: 10 }}>
-          🎫 Détail du Ticket
+          🎫 Détails du Ticket
         </Text>
         <Text style={{ fontSize: 16 }}>ID : {id}</Text>
-        <Text style={{ fontSize: 16 }}>Titre : {title}</Text>
+        <Text style={{ fontSize: 16 }}>Sujet : {title}</Text>
         <Text style={{ fontSize: 16 }}>Priorité : {priority}</Text>
-
-        <TextInput
+        <Text style={{ fontSize: 16 }}>Date de création : {date}</Text>
+        <Text style={{ fontSize: 16 }}>Description : {description}</Text>
+        {/* <TextInput
           placeholder="Écrire ici..."
           style={{ backgroundColor: "#fff" }}
-        />
+        /> */}
         <Button title="Ajouter un commentaire" />
 
         <Button title="Fermer le ticket" color="#FE0000" />
