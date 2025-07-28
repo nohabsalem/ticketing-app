@@ -24,11 +24,12 @@ export default function Index() {
           Go to Dashboard
         </Link>{" "}
       </View>
-      <Link href="/pages/creating-ticket" style={styles.text01}>
+      <Link href="/pages/tickets/creating-ticket" style={styles.text01}>
         Go to Creating Ticket Page
       </Link>
-      <Link href="/pages/ticket-detail">Ticket Detail</Link>
-
+      <Link href="/pages/tickets/ticket-detail" style={styles.text01}>
+        Ticket detail page{" "}
+      </Link>
       <Text>Autres pages</Text>
     </View>
   );
