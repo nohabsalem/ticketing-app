@@ -22,7 +22,6 @@ export default function Login() {
           autoCapitalize="none"
         />
         <Label style={styles.label}>Mot de passe :</Label>
-
         <TextInput
           style={styles.forminput}
           placeholder="Mot de passe"
