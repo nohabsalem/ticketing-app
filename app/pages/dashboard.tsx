@@ -39,10 +39,12 @@ export default function Dashboard() {
         <View style={styles.ticketsInfo}>
           <Text style={styles.noTicket}>• Vous n'avez ouvert aucun ticket</Text>
           <View>
-            <Button
-              title="Créer un nouveau ticket"
-              onPress={() => console.log("Créer un ticket")}
-            />
+            <Link href="/pages/tickets/ticket-list" style={styles.label}>
+              <Button
+                title="Créer un nouveau ticket"
+                onPress={() => console.log("Créer un ticket")}
+              />
+            </Link>{" "}
           </View>
         </View>
         <Text style={styles.footer}>
