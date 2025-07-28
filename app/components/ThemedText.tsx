@@ -19,7 +19,6 @@ export const styles = StyleSheet.create({
     justifyContent: "center",
     alignItems: "center",
   },
-
   text00: {
     fontSize: 16,
     color: "#000",
@@ -202,6 +201,22 @@ export const styles = StyleSheet.create({
     color: "#888",
     textAlign: "center",
     width: "100%",
+  },
+
+  ticketcontainer: {
+    borderWidth: 2,
+    borderColor: "black",
+    borderStyle: "solid",
+    padding: 10,
+    borderRadius: 8,
+  },
+
+  tickets: {
+    borderWidth: 2,
+    borderColor: "black",
+    borderStyle: "solid",
+    padding: 10,
+    borderRadius: 8,
   },
 });
 
