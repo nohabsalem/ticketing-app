@@ -1,7 +1,9 @@
 import { Label } from "@react-navigation/elements";
 import { Link } from "expo-router";
+import { Button, Text, TextInput, View } from "react-native";
+
 import React, { useState } from "react";
-import { Text, TextInput, TouchableOpacity, View } from "react-native";
+import { TouchableOpacity } from "react-native";
 import { styles } from "../components/ThemedText";
 export default function Login() {
   const [email, setEmail] = useState("");
@@ -30,9 +32,13 @@ export default function Login() {
           secureTextEntry
         />
 
-        <TouchableOpacity style={styles.button}>
-          <Text style={styles.buttonText}>Se connecter</Text>
-        </TouchableOpacity>
+        {/* <TouchableOpacity style={styles.button}>
+          <Text>Se connecter</Text>
+        </TouchableOpacity> */}
+        <Button
+          title="Se connecter"
+          onPress={() => console.log("Ticket créé")}
+        />
 
         <TouchableOpacity style={styles.googleButton}>
           <Text style={styles.googleButton}>Se connecter avec Google</Text>
