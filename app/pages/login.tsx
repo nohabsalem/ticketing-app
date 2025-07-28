@@ -35,10 +35,12 @@ export default function Login() {
         {/* <TouchableOpacity style={styles.button}>
           <Text>Se connecter</Text>
         </TouchableOpacity> */}
-        <Button
-          title="Se connecter"
-          onPress={() => console.log("Ticket créé")}
-        />
+        <Link href="/pages/dashboard">
+          <Button
+            title="Se connecter"
+            onPress={() => console.log("Ticket créé")}
+          />
+        </Link>
 
         <TouchableOpacity style={styles.googleButton}>
           <Text style={styles.googleButton}>Se connecter avec Google</Text>
