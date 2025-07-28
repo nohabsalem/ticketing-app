@@ -8,6 +8,9 @@ export default function Dashboard() {
 
   return (
     <>
+      <View style={{ alignItems: "flex-end", marginBottom: 8 }}>
+        <Button title="Créer un nouveau ticket" />
+      </View>
       <View style={styles.container2}>
         <Text style={styles.welcome}>Welcome, @user</Text>
 
@@ -36,17 +39,9 @@ export default function Dashboard() {
           <Text style={styles.total}>{totalTickets}</Text>
         </View>
 
-        <View style={styles.ticketsInfo}>
+        {/* <View style={styles.ticketsInfo}>
           <Text style={styles.noTicket}>• Vous n'avez ouvert aucun ticket</Text>
-          <View>
-            <Link href="/pages/tickets/ticket-list" style={styles.label}>
-              <Button
-                title="Créer un nouveau ticket"
-                onPress={() => console.log("Créer un ticket")}
-              />
-            </Link>{" "}
-          </View>
-        </View>
+        </View> */}
         <Text style={styles.footer}>
           <Link href="/" style={styles.text01}>
             Accueil
