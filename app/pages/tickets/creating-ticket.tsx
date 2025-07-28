@@ -31,7 +31,12 @@ export default function CreatingTicket() {
         <br />
         <TextInput style={styles.text00} placeholder="Titre du ticket : " />
         <br />
-        <TextInput style={styles.text00} placeholder="Description" multiline />
+
+        <TextInput
+          placeholder="Écrire ici.."
+          multiline
+          style={{ backgroundColor: "#fff" }}
+        />
         <RNPickerSelect
           onValueChange={(value) => console.log("Sujet choisi :", value)}
           items={options}
