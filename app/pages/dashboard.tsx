@@ -13,18 +13,26 @@ export default function Dashboard() {
 
         <View style={styles.statsContainer}>
           <View style={[styles.card, { borderColor: "#4ecdc4" }]}>
-            <Text style={styles.label}>Tickets ouverts :</Text>
+            {/* <Text style={styles.label}>Tickets ouverts :</Text> */}
+            <Link href="/pages/tickets/ticket-detail" style={styles.label}>
+              Tickets Ouverts :{" "}
+            </Link>
+
             <Text style={styles.number}>{ticketsOuverts}</Text>
           </View>
 
           <View style={[styles.card, { borderColor: "#ff6b6b" }]}>
-            <Text style={styles.label}>Tickets fermés :</Text>
+            <Link href="/pages/tickets/ticket-detail" style={styles.label}>
+              Tickets Fermés :{" "}
+            </Link>{" "}
             <Text style={styles.number}>{ticketsFermes}</Text>
           </View>
         </View>
 
         <View style={styles.totalBox}>
-          <Text style={styles.label}>Total de tickets :</Text>
+          <Link href="/pages/tickets/ticket-detail" style={styles.label}>
+            Total de tickets :{" "}
+          </Link>{" "}
           <Text style={styles.total}>{totalTickets}</Text>
         </View>
 
