@@ -13,8 +13,8 @@ import RNPickerSelect from "react-native-picker-select";
 const options = [
   { label: "Priorité : (Urgent d'abord)", value: "urgent" },
   { label: "Priorité : (Important d'abord)", value: "important" },
-  { label: "Priorité : (Modéré d'abord)", value: "moderate" },
-  { label: "Priorité : (Faible d'abord)", value: "weak" },
+  { label: "Priorité : (Modéré d'abord)", value: "modérée" },
+  { label: "Priorité : (Faible d'abord)", value: "faible" },
 ];
 
 const tickets = [
@@ -29,7 +29,7 @@ const tickets = [
   {
     id: "2",
     title: "Bug mineur sur l’UI",
-    priority: "weak",
+    priority: "faible",
     date: "21/12/25",
     description:
       "L'affichage responsive n'est pas bien respecté sur toutes les pages ",
@@ -39,9 +39,10 @@ const tickets = [
     title: "Problème de paiement",
     priority: "important",
     date: "21/12/25",
-    description: "Malgré ma ponctualité, je n'ai pas été payé.e ",
+    description:
+      "Malgré ma ponctualité et mon assiduité au travail, je n'ai pas été payé.e ",
   },
-  { id: "4", title: "Erreur 404", priority: "moderate", date: "21/09/25" },
+  { id: "4", title: "Erreur 404", priority: "modérée", date: "21/09/25" },
 ];
 
 export default function TicketList() {
