@@ -9,10 +9,14 @@ export default function Dashboard() {
   return (
     <>
       <View style={{ alignItems: "flex-end", marginBottom: 8 }}>
-        <Button title="Créer un nouveau ticket" />
+        <Link href="/pages/tickets/creating-ticket">
+          <Button title="Créer un nouveau ticket" />
+        </Link>
       </View>
       <View style={styles.container2}>
-        <Text style={styles.welcome}>Welcome, @user</Text>
+        <Text style={styles.welcome}>Bienvenue, @user</Text>
+        <Text style={{ color: "#a9a9a9" }}>La Plateforme</Text>
+        <Text style={styles.welcome}>Les tickets de votre entreprise :</Text>
 
         <View style={styles.statsContainer}>
           <View style={[styles.card, { borderColor: "#4ecdc4" }]}>
@@ -33,10 +37,7 @@ export default function Dashboard() {
         </View>
 
         <View style={styles.totalBox}>
-          <Link href="/pages/tickets/ticket-list" style={styles.label}>
-            Total de tickets :{" "}
-          </Link>{" "}
-          <Text style={styles.total}>{totalTickets}</Text>
+          Total de tickets :<Text style={styles.total}>{totalTickets}</Text>
         </View>
 
         {/* <View style={styles.ticketsInfo}>
