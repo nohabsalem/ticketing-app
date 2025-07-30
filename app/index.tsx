@@ -2,35 +2,59 @@ import { Link } from "expo-router";
 import { Text, View } from "react-native";
 import { styles } from "./components/ThemedText";
 
-export default function Index() {
+import { Label } from "@react-navigation/elements";
+import { Button, TextInput } from "react-native";
+
+import React, { useState } from "react";
+import { TouchableOpacity } from "react-native";
+export default function Login() {
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+
   return (
-    <View
-      style={{
-        flex: 1,
-        justifyContent: "center",
-        alignItems: "center",
-        backgroundColor: "#fff",
-      }}
-    >
-      <Text style={styles.text01}></Text>
+    <>
+      <View style={styles.formcontainer}>
+        <Text style={styles.formtitle}>Connexion</Text>
 
-      <Text>Navigation :</Text>
+        <Label style={styles.label}>Email :</Label>
+        <TextInput
+          style={styles.forminput}
+          placeholder="Email"
+          value={email}
+          onChangeText={setEmail}
+          keyboardType="email-address"
+          autoCapitalize="none"
+        />
+        <Label style={styles.label}>Mot de passe :</Label>
+        <TextInput
+          style={styles.forminput}
+          placeholder="Mot de passe"
+          value={password}
+          onChangeText={setPassword}
+          secureTextEntry
+        />
 
-      <View style={{ padding: 10, backgroundColor: "#c5c5c5" }}>
-        <Link href="/pages/login" style={styles.text01}>
-          Go to Login Page (API)
-        </Link>{" "}
-        <Link href="/pages/dashboard" style={styles.text01}>
-          Go to Dashboard
-        </Link>{" "}
+        {/* <TouchableOpacity style={styles.button}>
+          <Text>Se connecter</Text>
+        </TouchableOpacity> */}
+        <Link href="/pages/dashboard">
+          <Button
+            title="Se connecter"
+            onPress={() => console.log("Ticket créé")}
+          />
+        </Link>
+
+        <TouchableOpacity style={styles.googleButton}>
+          <Text style={styles.googleButton}>Se connecter avec Google</Text>
+        </TouchableOpacity>
+
+        <Text style={styles.footer}>
+          <Link href="/" style={styles.text01}>
+            Accueil <br />
+          </Link>{" "}
+          © 2025 La Plateforme - Tous droits réservés
+        </Text>
       </View>
-      <Link href="/pages/tickets/creating-ticket" style={styles.text01}>
-        Go to Creating Ticket Page
-      </Link>
-      <Link href="/pages/tickets/ticket-detail" style={styles.text01}>
-        Ticket detail page{" "}
-      </Link>
-      <Text>Autres pages</Text>
-    </View>
+    </>
   );
 }
