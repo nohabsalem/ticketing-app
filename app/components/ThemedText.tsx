@@ -68,7 +68,6 @@ export const styles = StyleSheet.create({
   },
 
   formcontainer: {
-    alignSelf: "center",
     alignItems: "center",
     padding: 20,
     backgroundColor: "#fff",
