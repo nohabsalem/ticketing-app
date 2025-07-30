@@ -1,5 +1,5 @@
 import { styles } from "@/app/components/ThemedText";
-import { useRouter } from "expo-router";
+import { Link, useRouter } from "expo-router";
 import React, { useState } from "react";
 import {
   FlatList,
@@ -94,12 +94,12 @@ export default function TicketList() {
         />
       </View>
 
-      <View>
-        <Text style={styles.footer}>
-          <Text style={styles.text01}>Accueil</Text> © 2025 La Plateforme - Tous
-          droits réservés
-        </Text>
-      </View>
+      <Text style={styles.footer}>
+        <Link href="/" style={styles.text01}>
+          Accueil
+        </Link>{" "}
+        © 2025 La Plateforme - Tous droits réservés
+      </Text>
     </>
   );
 }
