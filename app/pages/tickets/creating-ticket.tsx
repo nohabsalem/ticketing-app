@@ -65,7 +65,7 @@ export default function CreatingTicket() {
         </View>
         <Link href="/pages/tickets/ticket-list">
           <Button
-            title="Ajouter un ticket"
+            title="Soumettre"
             onPress={() => console.log("Ticket créé")}
           />{" "}
         </Link>
