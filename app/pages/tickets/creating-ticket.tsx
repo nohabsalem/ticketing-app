@@ -48,8 +48,27 @@ export default function CreatingTicket() {
           items={priorities}
           placeholder={{ label: "Sélectionnez une priorité", value: null }}
         />
-
-        <Button title="Soumettre" onPress={() => console.log("Ticket créé")} />
+        <View
+          style={{
+            padding: 1,
+            display: "flex",
+            flexDirection: "row",
+            gap: 5,
+            alignItems: "center",
+          }}
+        >
+          <Text>Joindre un fichier: (optionnel)</Text>
+          <Button
+            title="Parcourir.."
+            onPress={() => console.log("Jointure d'un fichier")}
+          />
+        </View>
+        <Link href="/pages/tickets/ticket-list">
+          <Button
+            title="Ajouter un ticket"
+            onPress={() => console.log("Ticket créé")}
+          />{" "}
+        </Link>
       </View>
 
       <View>
