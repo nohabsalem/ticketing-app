@@ -59,7 +59,7 @@ export default function TicketList() {
       <View>
         <Text style={styles.footer}>
           <Link href="/" style={styles.text01}>
-            Accueil
+            Accueil {"\n"}
           </Link>{" "}
           © 2025 La Plateforme - Tous droits réservés
         </Text>

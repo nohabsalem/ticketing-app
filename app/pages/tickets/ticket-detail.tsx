@@ -20,7 +20,7 @@ export default function TicketDetail() {
         <Text style={{ fontSize: 16 }}>Priorité : {priority}</Text>
         <Text style={{ fontSize: 16 }}>Date de création : {date}</Text>
         <Text style={{ fontSize: 16 }}>Description : {description}</Text>
-        <br />
+
         <Text style={{ fontSize: 16 }}> Pièce jointe : {attachment}</Text>
         {/* <TextInput
           placeholder="Écrire ici..."
@@ -73,13 +73,13 @@ export default function TicketDetail() {
         <Link href="/pages/tickets/ticket-list">
           <Button title="Fermer le ticket" color="#FE0000" />
         </Link>
+        <Text style={styles.footer}>
+          <Link href="/" style={styles.text01}>
+            Accueil {"\n"}
+          </Link>{" "}
+          © 2025 La Plateforme - Tous droits réservés
+        </Text>
       </View>
-      <Text style={styles.footer}>
-        <Link href="/" style={styles.text01}>
-          Accueil
-        </Link>{" "}
-        © 2025 La Plateforme - Tous droits réservés
-      </Text>
     </>
   );
 }

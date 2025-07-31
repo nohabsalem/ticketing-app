@@ -50,7 +50,7 @@ export default function Login() {
 
         <Text style={styles.footer}>
           <Link href="/" style={styles.text01}>
-            Accueil <br />
+            Accueil {"\n"}
           </Link>{" "}
           © 2025 La Plateforme - Tous droits réservés
         </Text>
