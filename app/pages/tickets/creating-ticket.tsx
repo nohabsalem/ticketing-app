@@ -28,9 +28,8 @@ export default function CreatingTicket() {
     <>
       <View>
         <Text style={styles.title}>Créer un nouveau ticket</Text>
-        <br />
+
         <TextInput style={styles.text00} placeholder="Titre du ticket : " />
-        <br />
 
         <TextInput
           placeholder="Écrire ici.."
@@ -74,7 +73,7 @@ export default function CreatingTicket() {
       <View>
         <Text style={styles.footer}>
           <Link href="/" style={styles.text01}>
-            Accueil <br />
+            Accueil
           </Link>{" "}
           © 2025 La Plateforme - Tous droits réservés
         </Text>
