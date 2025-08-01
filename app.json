@@ -16,6 +16,9 @@
       "eas": {
         "projectId": "e1494f2d-a008-4e29-9f46-9e20b3c68c2a"
       }
+    },
+    "android": {
+      "package": "com.nagitotoo.atelier"
     }
   }
 }

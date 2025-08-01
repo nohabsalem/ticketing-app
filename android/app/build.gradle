@@ -87,9 +87,9 @@ android {
     buildToolsVersion rootProject.ext.buildToolsVersion
     compileSdk rootProject.ext.compileSdkVersion
 
-    namespace 'com.anonymous.atelier'
+    namespace 'com.nagitotoo.atelier'
     defaultConfig {
-        applicationId 'com.anonymous.atelier'
+        applicationId 'com.nagitotoo.atelier'
         minSdkVersion rootProject.ext.minSdkVersion
         targetSdkVersion rootProject.ext.targetSdkVersion
         versionCode 1

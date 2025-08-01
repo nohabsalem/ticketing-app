@@ -1,4 +1,4 @@
-package com.anonymous.atelier
+package com.nagitotoo.atelier
 
 import android.app.Application
 import android.content.res.Configuration

@@ -1,4 +1,4 @@
-package com.anonymous.atelier
+package com.nagitotoo.atelier
 import expo.modules.splashscreen.SplashScreenManager
 
 import android.os.Build
