@@ -8,18 +8,13 @@ Créée dans le but d'un stage en entreprise.
 
 - **React Native** via [Expo](https://expo.dev/)
 - **React Navigation** (gestion de navigation)
-- **Axios** ou **Fetch** (API calls)
-- **Context API** ou **Redux** (gestion d’état)
-- Backend : [à compléter] (ex: Node.js, Firebase, Supabase, etc.)
 
 ## 📲 Fonctionnalités
 
-- 🔐 Authentification utilisateur (connexion / inscription)
+- 🔐 Authentification utilisateur connexion via **__GOOGLE__**
 - 🆕 Création de tickets avec titre, description, priorité, etc.
-- 📋 Liste des tickets avec filtre (en cours, résolu, tous)
+- 📋 Liste des tickets avec filtre (en cours, importance..)
 - 📝 Détails d’un ticket + possibilité de commenter ou mettre à jour
-- 🔔 Notifications push (via Expo Notifications)
-- 🌓 Mode clair/sombre (si implémenté)
 
 ## ⚙️ Installation & Lancement
 
@@ -32,4 +27,8 @@ npx expo start
 ```
 
 **Pour pouvoir lancer l'app sur votre téléphone, scannez le QR code __avec Expo Go__ (visible dans le terminal)**
- 
+N'oubliez pas d'être connecté au **__même__** réseau Wi-Fi que votre machine.
+Sinon, ça ne marchera pas.
+
+
+Profitez bien de votre expérience !! 😉
