@@ -1,60 +1,58 @@
-import { Link } from "expo-router";
-import { Text, View } from "react-native";
-import { styles } from "./components/ThemedText";
-
-import { Label } from "@react-navigation/elements";
-import { Button, TextInput } from "react-native";
-
+import { makeRedirectUri } from "expo-auth-session";
+import * as Google from "expo-auth-session/providers/google";
+import * as WebBrowser from "expo-web-browser";
 import React, { useState } from "react";
-import { TouchableOpacity } from "react-native";
-export default function Login() {
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
+import { Button, View } from "react-native";
+console.log("URL AUTORISÉE/ ATTENDUE ", makeRedirectUri());
+
+WebBrowser.maybeCompleteAuthSession();
+
+export default function Index() {
+  // État pour stocker les infos utilisateur (ici on conserve le idToken)
+  const [userInfo, setUserInfo] = useState(null);
+
+  // Configure la requête OAuth Google avec ton clientId
+  // Remplace "monlien.apps.googleusercontent.com" par ton vrai clientId web OAuth2
+  const [request, response, promptAsync] = Google.useIdTokenAuthRequest({
+    clientId: "http://localhost:8081",
+    // Si tu as androidClientId et iosClientId, tu peux les ajouter ici :
+    androidClientId:
+      "1077299977879-58ugmg1d484n6sk8fkt1695264ccerrj.apps.googleusercontent.com",
+    iosClientId:
+      "1077299977879-t3njpke1ncbplbbtlgrvg9gi4951o2jh.apps.googleusercontent.com",
+    webClientId:
+      "1077299977879-hitllervgsdd5k28f5u05dv43aufbc6o.apps.googleusercontent.com",
+    redirectUri: makeRedirectUri({
+      // Si tu utilises un schéma personnalisé, ajoute-le ici, sinon laisse vide
+      // scheme: "com.monnomapp",
+    }),
+  });
 
   return (
-    <>
-      <View style={styles.formcontainer}>
-        <Text style={styles.formtitle}>Connexion</Text>
-
-        <Label style={styles.label}>Email :</Label>
-        <TextInput
-          style={styles.forminput}
-          placeholder="Email"
-          value={email}
-          onChangeText={setEmail}
-          keyboardType="email-address"
-          autoCapitalize="none"
+    <View
+      style={{
+        flex: 1,
+        justifyContent: "center",
+        alignItems: "center",
+        padding: 20,
+      }}
+    >
+      {!userInfo ? (
+        <Button
+          disabled={!request}
+          title="Se connecter avec Google"
+          onPress={() => promptAsync()}
         />
-        <Label style={styles.label}>Mot de passe :</Label>
-        <TextInput
-          style={styles.forminput}
-          placeholder="Mot de passe"
-          value={password}
-          onChangeText={setPassword}
-          secureTextEntry
-        />
-
-        {/* <TouchableOpacity style={styles.button}>
-          <Text>Se connecter</Text>
-        </TouchableOpacity> */}
-        <Link href="/pages/dashboard">
+      ) : (
+        <>
           <Button
-            title="Se connecter"
-            onPress={() => console.log("Ticket créé")}
+            title="Se déconnecter"
+            onPress={() => {
+              setUserInfo(null);
+            }}
           />
-        </Link>
-
-        <TouchableOpacity style={styles.googleButton}>
-          <Text style={styles.googleButton}>Se connecter avec Google</Text>
-        </TouchableOpacity>
-
-        <Text style={styles.footer}>
-          <Link href="/" style={styles.text01}>
-            Accueil {"\n"}
-          </Link>{" "}
-          © 2025 La Plateforme - Tous droits réservés
-        </Text>
-      </View>
-    </>
+        </>
+      )}
+    </View>
   );
 }
