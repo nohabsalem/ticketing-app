@@ -19,6 +19,9 @@
     },
     "android": {
       "package": "com.nagitotoo.atelier"
-    }
+    },
+    "plugins": [
+      "expo-secure-store"
+    ]
   }
 }
