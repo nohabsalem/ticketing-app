@@ -6,23 +6,27 @@ import { Button, View } from "react-native";
 
 import { useRouter } from "expo-router";
 
-// console.log("URL AUTORISÉE/ ATTENDUE ", makeRedirectUri());
-
+// Termine la session d'auth si possible
 WebBrowser.maybeCompleteAuthSession();
 
 export default function Index() {
   const router = useRouter(); // Initialize router
   const [userToken, setUserToken] = useState<string | null>(null);
 
+  // Ligne corrigée : ajout du scheme "atelier"
+  const redirectUri = makeRedirectUri({
+    scheme: "atelier", // Doit correspondre au champ "scheme" dans app.json
+  });
+
   const [request, response, promptAsync] = Google.useIdTokenAuthRequest({
-    clientId: "http://localhost:8081",
+    clientId: "http://localhost:8081", // Remplace si besoin selon plateforme (par exemple, pas une URL ici)
     androidClientId:
       "1077299977879-58ugmg1d484n6sk8fkt1695264ccerrj.apps.googleusercontent.com",
     iosClientId:
       "1077299977879-t3njpke1ncbplbbtlgrvg9gi4951o2jh.apps.googleusercontent.com",
     webClientId:
       "1077299977879-hitllervgsdd5k28f5u05dv43aufbc6o.apps.googleusercontent.com",
-    redirectUri: makeRedirectUri({}),
+    redirectUri: redirectUri, // UTILISATION DU redirectUri corrigé
   });
 
   useEffect(() => {
@@ -31,8 +35,7 @@ export default function Index() {
       setUserToken(id_token);
       console.log("TOKEN UTILISATEUR", userToken);
       console.log("ID TOKEN", id_token);
-      // Redirect to /dashboard after successful authentication
-      router.replace("/pages/dashboard");
+      router.replace("/pages/dashboard"); // Redirection après succès
     } else if (response?.type === "error") {
       console.error("Erreur d'authentification", response.error);
     }
@@ -60,7 +63,7 @@ export default function Index() {
               title="Se déconnecter"
               onPress={() => {
                 setUserToken(null);
-                router.replace("/"); // Redirect to home page on logout
+                router.replace("/"); // Redirection à la déconnexion
               }}
             />
           </View>
