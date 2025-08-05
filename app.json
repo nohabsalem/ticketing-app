@@ -6,6 +6,8 @@
     }
   },
   "expo": {
+    "scheme": "atelier",
+    "name": "Atelier",
     "ios": {
       "bundleIdentifier": "com.nagitotoo.atelier",
       "infoPlist": {
