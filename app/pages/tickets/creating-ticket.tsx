@@ -35,12 +35,10 @@ const priorities = [
 export default function CreatingTicket() {
   return (
     <ScrollView className="flex-1 bg-white p-6">
-      {/* Titre */}
       <Text className="text-4xl font-poppinsSemiBold text-center text-blue-600 mb-8">
         Création de ticket :
       </Text>
 
-      {/* Titre du ticket */}
       <Input className="mb-4">
         <InputField
           placeholder="Titre du ticket"
@@ -48,7 +46,6 @@ export default function CreatingTicket() {
         />
       </Input>
 
-      {/* Description */}
       <Input className="mb-4 h-32">
         <InputField
           placeholder="Écrire ici..."
@@ -57,7 +54,6 @@ export default function CreatingTicket() {
         />
       </Input>
 
-      {/* Sujet */}
       <Select className="mb-4">
         <SelectTrigger>
           <SelectInput
@@ -80,7 +76,6 @@ export default function CreatingTicket() {
         </SelectPortal>
       </Select>
 
-      {/* Priorité */}
       <Select className="mb-4">
         <SelectTrigger>
           <SelectInput
@@ -103,7 +98,6 @@ export default function CreatingTicket() {
         </SelectPortal>
       </Select>
 
-      {/* Joindre un fichier */}
       <View className="flex-row items-center mb-6 gap-2">
         <Text className="font-poppins">Joindre un fichier : (optionnel)</Text>
         <Button className="bg-[#0062FF]" size="sm" onPress={() => {}}>
@@ -111,14 +105,12 @@ export default function CreatingTicket() {
         </Button>
       </View>
 
-      {/* Bouton Soumettre */}
       <Link href="/pages/tickets/ticket-list" asChild>
         <Button className="bg-[#0062FF]" size="sm">
           <ButtonText className="font-poppins">Soumettre</ButtonText>
         </Button>
       </Link>
 
-      {/* Footer */}
       <View className="mt-12">
         <Text style={styles.footer} className="font-poppins text-center">
           <Link href="/" style={styles.text01}>
