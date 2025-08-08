@@ -1,11 +1,20 @@
+import { Button, ButtonText } from "@/components/ui/button";
+import { Input, InputField } from "@/components/ui/input";
+import {
+  Select,
+  SelectBackdrop,
+  SelectContent,
+  SelectInput,
+  SelectItem,
+  SelectPortal,
+  SelectTrigger,
+} from "@/components/ui/select";
+import { Text } from "@/components/ui/text";
 import { Link } from "expo-router";
-import { Button, Text, TextInput, View } from "react-native";
-import RNPickerSelect from "react-native-picker-select";
-
+import { ScrollView, View } from "react-native";
 import { styles } from "../../components/ThemedText";
 
 const options = [
-  { label: "Choisissez un sujet :", value: null },
   { label: "Extrascolaire", value: "extrascolaire" },
   { label: "Innovation", value: "innovation" },
   { label: "Création compte/accès", value: "compte" },
@@ -25,59 +34,99 @@ const priorities = [
 
 export default function CreatingTicket() {
   return (
-    <>
-      <View>
-        <Text style={styles.title}>Créer un nouveau ticket</Text>
+    <ScrollView className="flex-1 bg-white p-6">
+      {/* Titre */}
+      <Text className="text-4xl font-poppinsSemiBold text-center text-blue-600 mb-8">
+        Création de ticket :
+      </Text>
 
-        <TextInput style={styles.text00} placeholder="Titre du ticket : " />
+      {/* Titre du ticket */}
+      <Input className="mb-4">
+        <InputField
+          placeholder="Titre du ticket"
+          className="font-poppins text-base"
+        />
+      </Input>
 
-        <TextInput
-          placeholder="Écrire ici.."
+      {/* Description */}
+      <Input className="mb-4 h-32">
+        <InputField
+          placeholder="Écrire ici..."
           multiline
-          style={{ backgroundColor: "#fff" }}
+          className="font-poppins text-base"
         />
-        <RNPickerSelect
-          onValueChange={(value) => console.log("Sujet choisi :", value)}
-          items={options}
-          placeholder={{ label: "Sélectionnez un sujet", value: null }}
-        />
+      </Input>
 
-        <RNPickerSelect
-          onValueChange={(value) => console.log("Priorité :", value)}
-          items={priorities}
-          placeholder={{ label: "Sélectionnez une priorité", value: null }}
-        />
-        <View
-          style={{
-            padding: 1,
-            display: "flex",
-            flexDirection: "row",
-            gap: 5,
-            alignItems: "center",
-          }}
-        >
-          <Text>Joindre un fichier: (optionnel)</Text>
-          <Button
-            title="Parcourir.."
-            onPress={() => console.log("Jointure d'un fichier")}
+      {/* Sujet */}
+      <Select className="mb-4">
+        <SelectTrigger>
+          <SelectInput
+            placeholder="Sélectionnez un sujet"
+            className="font-poppins text-base"
           />
-        </View>
-        <Link href="/pages/tickets/ticket-list">
-          <Button
-            title="Soumettre"
-            onPress={() => console.log("Ticket créé")}
-          />{" "}
-        </Link>
+        </SelectTrigger>
+        <SelectPortal>
+          <SelectBackdrop />
+          <SelectContent>
+            {options.map((opt) => (
+              <SelectItem
+                key={opt.value}
+                label={opt.label}
+                value={opt.value}
+                className="font-poppins"
+              />
+            ))}
+          </SelectContent>
+        </SelectPortal>
+      </Select>
+
+      {/* Priorité */}
+      <Select className="mb-4">
+        <SelectTrigger>
+          <SelectInput
+            placeholder="Sélectionnez une priorité"
+            className="font-poppins text-base"
+          />
+        </SelectTrigger>
+        <SelectPortal>
+          <SelectBackdrop />
+          <SelectContent>
+            {priorities.map((opt) => (
+              <SelectItem
+                key={opt.value}
+                label={opt.label}
+                value={opt.value}
+                className="font-poppins"
+              />
+            ))}
+          </SelectContent>
+        </SelectPortal>
+      </Select>
+
+      {/* Joindre un fichier */}
+      <View className="flex-row items-center mb-6 gap-2">
+        <Text className="font-poppins">Joindre un fichier : (optionnel)</Text>
+        <Button className="bg-[#0062FF]" size="sm" onPress={() => {}}>
+          <ButtonText className="font-poppins">Parcourir...</ButtonText>
+        </Button>
       </View>
 
-      <View>
-        <Text style={styles.footer}>
+      {/* Bouton Soumettre */}
+      <Link href="/pages/tickets/ticket-list" asChild>
+        <Button className="bg-[#0062FF]" size="sm">
+          <ButtonText className="font-poppins">Soumettre</ButtonText>
+        </Button>
+      </Link>
+
+      {/* Footer */}
+      <View className="mt-12">
+        <Text style={styles.footer} className="font-poppins text-center">
           <Link href="/" style={styles.text01}>
-            Accueil {"\n"}
-          </Link>{" "}
+            Accueil{"\n"}
+          </Link>
           © 2025 La Plateforme - Tous droits réservés
         </Text>
       </View>
-    </>
+    </ScrollView>
   );
 }
