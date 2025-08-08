@@ -1,8 +1,9 @@
+import { Button, ButtonText } from "@/components/ui/button";
 import * as Google from "expo-auth-session/providers/google";
 import { useRouter } from "expo-router";
 import * as WebBrowser from "expo-web-browser";
 import React, { useEffect, useState } from "react";
-import { Button, View } from "react-native";
+import { Text, View } from "react-native";
 
 WebBrowser.maybeCompleteAuthSession();
 
@@ -40,25 +41,22 @@ export default function Index() {
         padding: 20,
       }}
     >
+      <Text className="text-4xl font-semibold text-blue-600">
+        Bienvenue sur la Plateforme !
+      </Text>
       {!userToken ? (
-        <Button
-          disabled={!request}
-          title="Se connecter avec Google"
-          onPress={() => {
-            console.log("Tentative de connexion...");
-            promptAsync();
-          }}
-        />
-      ) : (
-        <View>
+        <>
+          {/* <Link href="/pages/dashboard">Naviguer quand même</Link> */}
           <Button
-            title="Se déconnecter"
-            onPress={() => {
-              setUserToken(null);
-              router.replace("/");
-            }}
-          />
-        </View>
+            className="bg-[#0062FF]"
+            size="md"
+            onPress={() => promptAsync()}
+          >
+            <ButtonText>Se connecter avec Google</ButtonText>
+          </Button>
+        </>
+      ) : (
+        <View></View>
       )}
     </View>
   );
