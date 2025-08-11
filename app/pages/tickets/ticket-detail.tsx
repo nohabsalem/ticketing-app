@@ -1,6 +1,7 @@
+import { Button, ButtonText } from "@/components/ui/button";
 import { Link, useLocalSearchParams } from "expo-router";
 import React, { useState } from "react";
-import { Button, Modal, Text, TextInput, View } from "react-native";
+import { Modal, ScrollView, Text, TextInput, View } from "react-native";
 import { styles } from "../../components/ThemedText";
 
 export default function TicketDetail() {
@@ -10,76 +11,163 @@ export default function TicketDetail() {
   const [comment, setComment] = useState("");
 
   return (
-    <>
+    <ScrollView style={{ flex: 1 }}>
       <View style={{ padding: 20 }}>
-        <Text style={{ fontSize: 24, fontWeight: "bold", marginBottom: 10 }}>
-          🎫 Détails du Ticket
+        <Text
+          style={{
+            fontSize: 26,
+            fontWeight: "bold",
+            marginBottom: 15,
+            textAlign: "center",
+            color: "#0062FF",
+          }}
+        >
+          Détails du Ticket
         </Text>
-        <Text style={{ fontSize: 16 }}>ID : {id}</Text>
-        <Text style={{ fontSize: 16 }}>Sujet : {title}</Text>
-        <Text style={{ fontSize: 16 }}>Priorité : {priority}</Text>
-        <Text style={{ fontSize: 16 }}>Date de création : {date}</Text>
-        <Text style={{ fontSize: 16 }}>Description : {description}</Text>
 
-        <Text style={{ fontSize: 16 }}> Pièce jointe : {attachment}</Text>
-        {/* <TextInput
-          placeholder="Écrire ici..."
-          style={{ backgroundColor: "#fff" }}
-        /> */}
+        <View
+          style={{
+            backgroundColor: "white",
+            borderRadius: 10,
+            padding: 15,
+            shadowColor: "#000",
+            shadowOpacity: 0.1,
+            shadowRadius: 4,
+            marginBottom: 20,
+          }}
+        >
+          <Text className="text-md font-semibold">
+            ID : <Text className="font-light">{id}</Text>
+          </Text>
+          <Text className="text-md font-semibold">
+            Sujet : <Text className="font-light">{title}</Text>
+          </Text>
+          <Text className="text-md font-semibold">
+            Priorité :{" "}
+            <Text
+              style={{
+                fontWeight: "bold",
+                color: priority === "urgent" ? "#FE0000" : "#FF9900",
+              }}
+            >
+              <Text className="font-medium">{priority}</Text>
+            </Text>
+          </Text>
+          <Text className="text-md font-semibold">
+            Créé le : <Text className="font-light">{date}</Text>
+          </Text>
+
+          <Text className="text-md font-semibold">
+            Description : <Text className="font-light">{description}</Text>
+          </Text>
+          {attachment && (
+            <Text className="text-md font-semibold">
+              Pièce jointe :{" "}
+              <Text className="font-light underline underline-offset-1 cursor-pointer">
+                {attachment}
+              </Text>
+            </Text>
+          )}
+        </View>
+
         <Button
-          title="Ajouter un commentaire"
           onPress={() => setVisible(true)}
-        />
-        <Modal visible={visible} transparent={true} animationType="fade">
+          style={{
+            backgroundColor: "#0062FF",
+            borderRadius: 8,
+            marginBottom: 20,
+          }}
+        >
+          <ButtonText className="text-white">Ajouter un commentaire</ButtonText>
+        </Button>
+
+        <Modal visible={visible} transparent animationType="fade">
           <View
             style={{
               flex: 1,
               justifyContent: "center",
               alignItems: "center",
-              backgroundColor: "rgba(0, 0, 0, 0.3)", // fond un peu sombre
+              backgroundColor: "rgba(0,0,0,0.5)",
+              padding: 20,
             }}
           >
             <View
               style={{
                 backgroundColor: "white",
-                padding: 30,
-                width: 500,
+                borderRadius: 10,
+                padding: 20,
+                width: "100%",
+                maxWidth: 400,
               }}
             >
-              <Text style={styles.title}>Créer un commentaire :</Text>
+              <Text className="text-2xl text-center mb-4 font-semibold color-[#0062FF]">
+                Créer un commentaire :
+              </Text>
               <TextInput
                 placeholder="Écrire ici..."
                 value={comment}
-                style={{ backgroundColor: "#ebebebff" }}
                 onChangeText={setComment}
                 multiline
+                style={{
+                  backgroundColor: "#F0F0F0",
+                  borderRadius: 6,
+                  padding: 10,
+                  minHeight: 80,
+                  marginBottom: 15,
+                  textAlignVertical: "top",
+                }}
               />
+
               <Button
-                title="POSTER"
+                style={{
+                  backgroundColor: "#0062FF",
+                  borderRadius: 8,
+                  marginBottom: 10,
+                }}
                 onPress={() => {
                   console.log("Commentaire :", comment);
                   setVisible(false);
                   setComment("");
                 }}
-              />
+              >
+                <ButtonText className="text-white"> Poster</ButtonText>
+              </Button>
+
               <Button
-                title="Annuler"
-                onPress={() => setVisible(false)}
-                color="#FE0000"
-              />
+                style={{
+                  backgroundColor: "#FE0000",
+                  borderRadius: 8,
+                }}
+                onPress={() => {
+                  setVisible(false);
+                  setComment("");
+                }}
+              >
+                <ButtonText style={{ color: "white" }}> Annuler</ButtonText>
+              </Button>
             </View>
           </View>
         </Modal>
-        <Link href="/pages/tickets/ticket-list">
-          <Button title="Fermer le ticket" color="#FE0000" />
+
+        <Link href="/pages/tickets/ticket-list" asChild>
+          <Button
+            style={{
+              backgroundColor: "#FE0000",
+              borderRadius: 8,
+              marginTop: 10,
+            }}
+          >
+            <ButtonText style={{ color: "white" }}>Fermer le ticket</ButtonText>
+          </Button>
         </Link>
-        <Text style={styles.footer}>
+
+        <Text style={[styles.footer, { textAlign: "center", marginTop: 30 }]}>
           <Link href="/" style={styles.text01}>
-            Accueil {"\n"}
-          </Link>{" "}
+            Accueil{"\n"}
+          </Link>
           © 2025 La Plateforme - Tous droits réservés
         </Text>
       </View>
-    </>
+    </ScrollView>
   );
 }
