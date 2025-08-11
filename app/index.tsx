@@ -41,9 +41,10 @@ export default function Index() {
         padding: 20,
       }}
     >
-      <Text className="text-4xl font-semibold text-blue-600">
+      <Text className="text-4xl font-semibold text-blue-600 text-center mb-6">
         Bienvenue sur la Plateforme !
       </Text>
+
       {!userToken ? (
         <>
           {/* <Link href="/pages/dashboard">Naviguer quand même</Link> */}
