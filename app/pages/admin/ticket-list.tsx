@@ -11,9 +11,15 @@ import {
   SelectTrigger,
 } from "@/components/ui/select";
 import { Text } from "@/components/ui/text";
-import { Link } from "expo-router";
+import { Link, useRouter } from "expo-router";
 import { useState } from "react";
-import { FlatList, Modal, ScrollView, View } from "react-native";
+import {
+  FlatList,
+  Modal,
+  ScrollView,
+  TouchableOpacity,
+  View,
+} from "react-native";
 
 const options = [
   { label: "Priorité : (Urgent d'abord)", value: "urgent" },
@@ -23,12 +29,36 @@ const options = [
 ];
 
 const tickets = [
-  { id: "1", title: "Connexion impossible", priority: "urgent" },
-  { id: "2", title: "Bug mineur sur l’UI", priority: "weak" },
-  { id: "3", title: "Problème de paiement", priority: "important" },
-  { id: "4", title: "Erreur 404", priority: "moderate" },
+  {
+    id: "1",
+    title: "Connexion impossible",
+    priority: "urgent",
+    date: "19/01/25",
+    description:
+      "Impossible de me connecter à la Plateforme, pourtant j'ai mis les bonnes coordonnées.",
+    attachment: "Screenshot985ad.jpg",
+  },
+  {
+    id: "2",
+    title: "Bug mineur sur l’UI",
+    priority: "weak",
+    date: "21/12/25",
+    description:
+      "L'affichage responsive n'est pas bien respecté sur toutes les pages.",
+    attachment: "responsive-img.jpg",
+  },
+  {
+    id: "3",
+    title: "Problème de paiement",
+    priority: "important",
+    date: "21/12/25",
+    description:
+      "Malgré ma ponctualité et mon assiduité au travail, je n'ai pas été payé.e.",
+    attachment: "bank.jpg",
+  },
 ];
 
+// === Users rajoutés depuis code 1 === //
 const users = [
   { label: "Susie", value: "Susie" },
   { label: "Noelle", value: "Noelle" },
@@ -37,119 +67,115 @@ const users = [
 
 export default function TicketList() {
   const [selectedPriority, setSelectedPriority] = useState<string | null>(null);
-  const [visible, setVisible] = useState(false);
-  const [comment, setComment] = useState("");
+  const [modalVisible, setModalVisible] = useState(false);
+  const [selectedUser, setSelectedUser] = useState<string | null>(null);
+
+  const router = useRouter();
+
   return (
     <ScrollView className="flex-1 bg-white p-6">
+      {/* Bouton assignation de tâche */}
       <View className="items-end mb-4">
-        <Button className="bg-[#0062FF]" size="sm">
-          <Button onPress={() => setVisible(true)}>
-            <ButtonText className="text-white">Gérer l'assignation</ButtonText>
-          </Button>
-          <Modal visible={visible} transparent animationType="fade">
-            <View
-              style={{
-                flex: 1,
-                justifyContent: "center",
-                alignItems: "center",
-                backgroundColor: "rgba(0,0,0,0.5)",
-                padding: 20,
-              }}
-            >
-              <View
-                style={{
-                  backgroundColor: "white",
-                  borderRadius: 10,
-                  padding: 20,
-                  width: "100%",
-                  maxWidth: 400,
-                }}
-              >
-                <Text className="text-2xl text-center mb-4 font-semibold color-[#0062FF]">
-                  Qui devra gérer ce ticket ?
-                </Text>
-                <Text className="font-poppins mb-6 text-justify-center">
-                  Sélectionnez un membre de l'équipe pour assigner ce ticket.
-                </Text>
-                <Input className="mb-4">
-                  <InputField
-                    placeholder="Rechercher.."
-                    className="font-poppins text-base"
-                  />
-                </Input>
-                <Select
-                  className="mb-6"
-                  onValueChange={(val) => setSelectedPriority(val)}
-                >
-                  <SelectTrigger>
-                    <SelectInput
-                      placeholder="Choisir un utilisateur..."
-                      className="font-poppins text-base cursor-pointer"
-                    />
-                  </SelectTrigger>
-                  <SelectPortal>
-                    <SelectBackdrop />
-                    <SelectContent className="font-poppins cursor-pointer">
-                      {users.map((opt) => (
-                        <SelectItem
-                          key={opt.value}
-                          label={opt.label}
-                          value={opt.value}
-                          className="font-poppins cursor-pointer"
-                        />
-                      ))}
-                    </SelectContent>
-                  </SelectPortal>
-                </Select>
-                <Button
-                  style={{
-                    backgroundColor: "#FE0000",
-                    borderRadius: 8,
-                  }}
-                  onPress={() => {
-                    setVisible(false);
-                    setComment("");
-                  }}
-                >
-                  <ButtonText style={{ color: "white" }}> Annuler</ButtonText>
-                </Button>
-                {/* <Button
-                  style={{
-                    backgroundColor: "#0062FF",
-                    borderRadius: 8,
-                    marginBottom: 10,
-                  }}
-                  onPress={() => {
-                    console.log("Commentaire :", comment);
-                    setVisible(false);
-                    setComment("");
-                  }}
-                >
-                  <ButtonText className="text-white"> Poster</ButtonText>
-                </Button>
-
-                <Button
-                  style={{
-                    backgroundColor: "#FE0000",
-                    borderRadius: 8,
-                  }}
-                  onPress={() => {
-                    setVisible(false);
-                    setComment("");
-                  }}
-                >
-                  <ButtonText style={{ color: "white" }}> Annuler</ButtonText>
-                </Button> */}
-              </View>
-            </View>
-          </Modal>{" "}
+        <Button
+          className="bg-[#0062FF]"
+          size="sm"
+          onPress={() => setModalVisible(true)}
+        >
+          <ButtonText className="text-white">Gérer l'assignation</ButtonText>
         </Button>
       </View>
 
+      {/* Modal Assignation */}
+      <Modal visible={modalVisible} transparent animationType="fade">
+        <View
+          style={{
+            flex: 1,
+            justifyContent: "center",
+            alignItems: "center",
+            backgroundColor: "rgba(0,0,0,0.5)",
+            padding: 20,
+          }}
+        >
+          <View
+            style={{
+              backgroundColor: "white",
+              borderRadius: 10,
+              padding: 20,
+              width: "100%",
+              maxWidth: 400,
+            }}
+          >
+            <Text className="text-2xl text-center mb-4 font-semibold color-[#0062FF]">
+              Qui devra gérer ce ticket ?
+            </Text>
+            <Text className="font-poppins mb-6 text-center">
+              Sélectionnez un membre de l'équipe pour assigner ce ticket.
+            </Text>
+
+            {/* Sélecteur des users */}
+            <Select
+              className="mb-6"
+              onValueChange={(val) => setSelectedUser(val)}
+            >
+              <SelectTrigger>
+                <SelectInput
+                  placeholder="Choisir un utilisateur..."
+                  className="font-poppins text-base cursor-pointer"
+                />
+              </SelectTrigger>
+              <SelectPortal>
+                <SelectBackdrop />
+                <SelectContent className="font-poppins cursor-pointer">
+                  {users.map((opt) => (
+                    <SelectItem
+                      key={opt.value}
+                      label={opt.label}
+                      value={opt.value}
+                      className="font-poppins cursor-pointer"
+                    />
+                  ))}
+                </SelectContent>
+              </SelectPortal>
+            </Select>
+
+            {/* Boutons d’action */}
+            <Button
+              style={{
+                backgroundColor: "#0062FF",
+                borderRadius: 8,
+                marginBottom: 10,
+              }}
+              onPress={() => {
+                console.log("Utilisateur assigné :", selectedUser);
+                setModalVisible(false);
+                setSelectedUser(null);
+              }}
+            >
+              <ButtonText className="text-white"> Assigner</ButtonText>
+            </Button>
+
+            <Button
+              style={{
+                backgroundColor: "#FE0000",
+                borderRadius: 8,
+              }}
+              onPress={() => {
+                setModalVisible(false);
+                setSelectedUser(null);
+              }}
+            >
+              <ButtonText style={{ color: "white" }}> Annuler</ButtonText>
+            </Button>
+          </View>
+        </View>
+      </Modal>
+
+      {/* Titre */}
       <Text className="text-3xl font-poppinsSemiBold text-blue-600 mb-6">
         Historique des Tickets :
       </Text>
 
+      {/* Recherche */}
       <Input className="mb-4">
         <InputField
           placeholder="Rechercher.."
@@ -157,6 +183,7 @@ export default function TicketList() {
         />
       </Input>
 
+      {/* Sélecteur de priorité */}
       <Select
         className="mb-6"
         onValueChange={(val) => setSelectedPriority(val)}
@@ -182,10 +209,9 @@ export default function TicketList() {
         </SelectPortal>
       </Select>
 
-      {/* Sous-titre */}
+      {/* Liste des tickets */}
       <Text className="text-2xl font-poppinsSemiBold mb-4">TICKETS :</Text>
 
-      {/* Liste des tickets */}
       <FlatList
         data={tickets}
         keyExtractor={(item) => item.id}
@@ -194,9 +220,29 @@ export default function TicketList() {
           <View className="h-[1px] bg-gray-200 my-2" />
         )}
         renderItem={({ item }) => (
-          <Text className="font-poppins text-base">
-            {item.title} ({item.priority})
-          </Text>
+          <TouchableOpacity
+            onPress={() =>
+              router.push({
+                pathname: "/pages/tickets/ticket-detail",
+                params: {
+                  id: item.id,
+                  title: item.title,
+                  priority: item.priority,
+                  date: item.date,
+                  description: item.description,
+                  attachment: item.attachment,
+                },
+              })
+            }
+          >
+            <View className="p-3 bg-gray-50 rounded-lg hover:bg-blue-300">
+              <Text className="font-poppins text-base text-gray-800">
+                {item.title}{" "}
+                <Text className="text-sm text-gray-500">({item.priority})</Text>
+              </Text>
+              <Text className="text-xs text-gray-500 mt-1">{item.date}</Text>
+            </View>
+          </TouchableOpacity>
         )}
       />
 
