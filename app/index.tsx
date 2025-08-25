@@ -1,6 +1,6 @@
 import { Button, ButtonText } from "@/components/ui/button";
 import * as Google from "expo-auth-session/providers/google";
-import { useRouter } from "expo-router";
+import { Link, useRouter } from "expo-router";
 import * as WebBrowser from "expo-web-browser";
 import React, { useEffect, useState } from "react";
 import { Text, View } from "react-native";
@@ -44,6 +44,11 @@ export default function Index() {
       <Text className="text-4xl font-semibold text-blue-600 text-center mb-6">
         Bienvenue sur la Plateforme !
       </Text>
+      <Link href="/pages/dashboard" className="mb-4">
+        <Text className="text-lg text-blue-500 underline">
+          Accéder au tableau de bord sans se connecter
+        </Text>
+      </Link>
 
       {!userToken ? (
         <>
