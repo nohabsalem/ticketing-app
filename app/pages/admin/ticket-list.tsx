@@ -13,7 +13,7 @@ import {
 import { Text } from "@/components/ui/text";
 import { Link } from "expo-router";
 import { useState } from "react";
-import { FlatList, ScrollView, View } from "react-native";
+import { FlatList, Modal, ScrollView, View } from "react-native";
 
 const options = [
   { label: "Priorité : (Urgent d'abord)", value: "urgent" },
@@ -29,14 +29,119 @@ const tickets = [
   { id: "4", title: "Erreur 404", priority: "moderate" },
 ];
 
+const users = [
+  { label: "Roxan Roumégas", value: "Roxan" },
+  { label: "Sambeau Prak", value: "Sambeau" },
+];
+
 export default function TicketList() {
   const [selectedPriority, setSelectedPriority] = useState<string | null>(null);
-
+  const [visible, setVisible] = useState(false);
+  const [comment, setComment] = useState("");
   return (
     <ScrollView className="flex-1 bg-white p-6">
       <View className="items-end mb-4">
         <Button className="bg-[#0062FF]" size="sm">
-          <ButtonText className="font-poppins">Gérer l'assignation</ButtonText>
+          <Button onPress={() => setVisible(true)}>
+            <ButtonText className="text-white">Gérer l'assignation</ButtonText>
+          </Button>
+          <Modal visible={visible} transparent animationType="fade">
+            <View
+              style={{
+                flex: 1,
+                justifyContent: "center",
+                alignItems: "center",
+                backgroundColor: "rgba(0,0,0,0.5)",
+                padding: 20,
+              }}
+            >
+              <View
+                style={{
+                  backgroundColor: "white",
+                  borderRadius: 10,
+                  padding: 20,
+                  width: "100%",
+                  maxWidth: 400,
+                }}
+              >
+                <Text className="text-2xl text-center mb-4 font-semibold color-[#0062FF]">
+                  Qui devra gérer ce ticket ?
+                </Text>
+                <Text className="font-poppins mb-6 text-justify-center">
+                  Sélectionnez un membre de l'équipe pour assigner ce ticket.
+                </Text>
+                <Input className="mb-4">
+                  <InputField
+                    placeholder="Rechercher.."
+                    className="font-poppins text-base"
+                  />
+                </Input>
+                <Select
+                  className="mb-6"
+                  onValueChange={(val) => setSelectedPriority(val)}
+                >
+                  <SelectTrigger>
+                    <SelectInput
+                      placeholder="Choisir un utilisateur..."
+                      className="font-poppins text-base cursor-pointer"
+                    />
+                  </SelectTrigger>
+                  <SelectPortal>
+                    <SelectBackdrop />
+                    <SelectContent>
+                      {users.map((opt) => (
+                        <SelectItem
+                          key={opt.value}
+                          label={opt.label}
+                          value={opt.value}
+                          className="font-poppins"
+                        />
+                      ))}
+                    </SelectContent>
+                  </SelectPortal>
+                </Select>
+                <Button
+                  style={{
+                    backgroundColor: "#FE0000",
+                    borderRadius: 8,
+                  }}
+                  onPress={() => {
+                    setVisible(false);
+                    setComment("");
+                  }}
+                >
+                  <ButtonText style={{ color: "white" }}> Annuler</ButtonText>
+                </Button>
+                {/* <Button
+                  style={{
+                    backgroundColor: "#0062FF",
+                    borderRadius: 8,
+                    marginBottom: 10,
+                  }}
+                  onPress={() => {
+                    console.log("Commentaire :", comment);
+                    setVisible(false);
+                    setComment("");
+                  }}
+                >
+                  <ButtonText className="text-white"> Poster</ButtonText>
+                </Button>
+
+                <Button
+                  style={{
+                    backgroundColor: "#FE0000",
+                    borderRadius: 8,
+                  }}
+                  onPress={() => {
+                    setVisible(false);
+                    setComment("");
+                  }}
+                >
+                  <ButtonText style={{ color: "white" }}> Annuler</ButtonText>
+                </Button> */}
+              </View>
+            </View>
+          </Modal>{" "}
         </Button>
       </View>
 
