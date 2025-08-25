@@ -30,8 +30,9 @@ const tickets = [
 ];
 
 const users = [
-  { label: "Roxan Roumégas", value: "Roxan" },
-  { label: "Sambeau Prak", value: "Sambeau" },
+  { label: "Susie", value: "Susie" },
+  { label: "Noelle", value: "Noelle" },
+  { label: "Narciso Anasui", value: "Anasui" },
 ];
 
 export default function TicketList() {
@@ -88,13 +89,13 @@ export default function TicketList() {
                   </SelectTrigger>
                   <SelectPortal>
                     <SelectBackdrop />
-                    <SelectContent>
+                    <SelectContent className="font-poppins cursor-pointer">
                       {users.map((opt) => (
                         <SelectItem
                           key={opt.value}
                           label={opt.label}
                           value={opt.value}
-                          className="font-poppins"
+                          className="font-poppins cursor-pointer"
                         />
                       ))}
                     </SelectContent>
