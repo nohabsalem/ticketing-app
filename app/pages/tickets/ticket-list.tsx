@@ -59,12 +59,11 @@ export default function TicketList() {
     <ScrollView className="flex-1 bg-white p-6">
       {/* Bouton de gestion */}
 
-      {/* Titre */}
       <Text className="text-3xl font-poppinsSemiBold text-blue-600 mb-6">
         Historique des Tickets :
       </Text>
 
-      {/* Barre de recherche */}
+      {/* Recherche */}
       <Input className="mb-4">
         <InputField
           placeholder="Rechercher.."
@@ -98,10 +97,9 @@ export default function TicketList() {
         </SelectPortal>
       </Select>
 
-      {/* Sous-titre */}
+      {/* Liste des tickets */}
       <Text className="text-2xl font-poppinsSemiBold mb-4">TICKETS :</Text>
 
-      {/* Liste des tickets (cliquables) */}
       <FlatList
         data={tickets}
         keyExtractor={(item) => item.id}
@@ -125,7 +123,7 @@ export default function TicketList() {
               })
             }
           >
-            <View className="p-3 bg-gray-50 rounded-lg">
+            <View className="p-3 bg-gray-50 rounded-lg hover:bg-blue-300">
               <Text className="font-poppins text-base text-gray-800">
                 {item.title}{" "}
                 <Text className="text-sm text-gray-500">({item.priority})</Text>
