@@ -51,7 +51,6 @@ export default function TicketList() {
         />
       </Input>
 
-      {/* Sélecteur de priorité */}
       <Select
         className="mb-6"
         onValueChange={(val) => setSelectedPriority(val)}
