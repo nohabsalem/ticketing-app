@@ -1,9 +1,0 @@
-{
-"installed": {
-    "client_id":"1077299977879-58ugmg1d484n6sk8fkt1695264ccerrj.apps.googleusercontent.com",
-    "project_id":"ticketing-app-467607",
-    "auth_uri":"https://accounts.google.com/o/oauth2/auth",
-    "token_uri":"https://oauth2.googleapis.com/token",
-    "auth_provider_x509_cert_url":"https://www.googleapis.com/oauth2/v1/certs"
-}
-}
