@@ -1,69 +1,79 @@
 import { Button, ButtonText } from "@/components/ui/button";
-import * as Google from "expo-auth-session/providers/google";
-import { Link, useRouter } from "expo-router";
+import axios from "axios";
 import * as WebBrowser from "expo-web-browser";
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import { Text, View } from "react-native";
 
 WebBrowser.maybeCompleteAuthSession();
 
+const API_BASE_URL = "https://ticketing.development.atelier.ovh/api/mobile";
+
 export default function Index() {
-  const [request, response, promptAsync] = Google.useIdTokenAuthRequest({
-    clientId:
-      "1077299977879-hitllervgsdd5k28f5u05dv43aufbc6o.apps.googleusercontent.com",
-    iosClientId:
-      "1077299977879-t3njpke1ncbplbbtlgrvg9gi4951o2jh.apps.googleusercontent.com",
-  });
-  const router = useRouter();
-  const [userToken, setUserToken] = useState<string | null>(null);
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState<string | null>(null);
 
-  useEffect(() => {
-    console.log("Response type:", response?.type);
-    console.log("Response:", response);
+  const promptAsync = async () => {
+    try {
+      setLoading(true);
+      setError(null);
 
-    if (response?.type === "success") {
-      const { id_token } = response.params;
-      setUserToken(id_token);
-      console.log("TOKEN UTILISATEUR", id_token);
-      router.replace("/pages/dashboard");
-    } else if (response?.type === "error") {
-      console.error("Erreur d'authentification:", response.error);
-      console.error("Error details:", response);
+      // 1. Récupérer URL d'auth Google depuis API backend
+      const response = await axios.get(`${API_BASE_URL}/auth/google/url`);
+      const googleAuthUrl = response.data.auth_url;
+
+      // 2. Ouvrir navigateur pour authentification Google (popup)
+      const result = await WebBrowser.openAuthSessionAsync(
+        googleAuthUrl,
+        // Le redirect URI configuré dans backend, par ex. votre URL callback API
+        `${API_BASE_URL}/auth/google/callback`
+      );
+
+      if (result.type !== "success") {
+        throw new Error("Authentification annulée ou échouée");
+      }
+
+      // 3. Le popup se ferme automatiquement, résultat contient l'URL de redirection
+      // Extraire code OAuth de l'URL retournée
+      const url = result.url;
+      const codeMatch = url.match(/[?&]code=([^&]+)/);
+      if (!codeMatch) throw new Error("Code OAuth non reçu");
+
+      const code = decodeURIComponent(codeMatch[1]);
+
+      // 4. Échanger code contre tokens auprès du backend
+      const authResponse = await axios.post(`${API_BASE_URL}/auth/google`, {
+        code,
+      });
+
+      // Stocker tokens / user selon votre gestion (async-storage, contexte Redux...)
+      console.log("Connexion réussie !", authResponse.data.user.email);
+
+      // 5. Naviguer / afficher page principale ou dashboard
+      // Exemple avec React Navigation : navigation.navigate('Home');
+      // Ici placeholder :
+      alert(`Bienvenue ${authResponse.data.user.email}`);
+    } catch (e: any) {
+      setError(e.message);
+      console.error("Erreur lors de la connexion Google:", e);
+    } finally {
+      setLoading(false);
     }
-  }, [response]);
+  };
 
   return (
-    <View
-      style={{
-        flex: 1,
-        justifyContent: "center",
-        alignItems: "center",
-        padding: 20,
-      }}
-    >
-      <Text className="text-4xl font-semibold text-blue-600 text-center mb-6">
-        Bienvenue sur la Plateforme !
-      </Text>
-      <Link href="/pages/dashboard" className="mb-4">
-        <Text className="text-lg text-blue-500 underline">
-          Accéder au tableau de bord sans se connecter
-        </Text>
-      </Link>
-
-      {!userToken ? (
-        <>
-          {/* <Link href="/pages/dashboard">Naviguer quand même</Link> */}
-          <Button
-            className="bg-[#0062FF]"
-            size="md"
-            onPress={() => promptAsync()}
-          >
-            <ButtonText>Se connecter avec Google</ButtonText>
-          </Button>
-        </>
-      ) : (
-        <View></View>
-      )}
+    <View className="flex-1 justify-center items-center bg-white p-4">
+      <Text className="mb-8 text-2xl font-bold">Connexion Google</Text>
+      {error && <Text className="mb-4 text-red-600 font-medium">{error}</Text>}
+      <Button
+        className="bg-[#0062FF] px-8 py-3 rounded-md"
+        size="md"
+        disabled={loading}
+        onPress={promptAsync}
+      >
+        <ButtonText>
+          {loading ? "Connexion en cours..." : "Se connecter avec Google"}
+        </ButtonText>
+      </Button>
     </View>
   );
 }
