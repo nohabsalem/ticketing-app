@@ -1,31 +1,61 @@
 {
-  "extends": "./app/app.json",
-  "extra": {
-    "eas": {
-      "projectId": "e1494f2d-a008-4e29-9f46-9e20b3c68c2a"
-    }
-  },
   "expo": {
-    "scheme": "atelier",
     "name": "Atelier",
+    "slug": "atelier",
+    "scheme": "com.nagitotoo.atelier",
+    "version": "1.0.0",
+    "orientation": "portrait",
+    "icon": "./assets/images/icon.png",
+    "userInterfaceStyle": "automatic",
+    "newArchEnabled": true,
     "ios": {
       "bundleIdentifier": "com.nagitotoo.atelier",
+      "supportsTablet": true,
       "infoPlist": {
         "ITSAppUsesNonExemptEncryption": false
       }
     },
+    "android": {
+      "package": "com.nagitotoo.atelier",
+      "adaptiveIcon": {
+        "foregroundImage": "./assets/images/adaptive-icon.png",
+        "backgroundColor": "#ffffff"
+      },
+      "edgeToEdgeEnabled": true
+    },
+    "web": {
+      "bundler": "metro",
+      "output": "static",
+      "favicon": "./assets/images/favicon.png"
+    },
+    "plugins": [
+      "expo-router",
+      [
+        "expo-splash-screen",
+        {
+          "image": "./assets/images/splash-icon.png",
+          "imageWidth": 200,
+          "resizeMode": "contain",
+          "backgroundColor": "#ffffff"
+        }
+      ],
+      [
+        "@react-native-google-signin/google-signin",
+        {
+          "iosUrlScheme": "com.googleusercontent.apps.ticketing-app-467607"
+        }
+      ],
+      "expo-secure-store",
+      "expo-web-browser",
+      "expo-font"
+    ],
     "extra": {
       "eas": {
         "projectId": "e1494f2d-a008-4e29-9f46-9e20b3c68c2a"
       }
     },
-    "android": {
-      "package": "com.nagitotoo.atelier"
-    },
-    "plugins": [
-      "expo-secure-store",
-      "expo-web-browser",
-      "expo-font"
-    ]
+    "experiments": {
+      "typedRoutes": true
+    }
   }
 }
