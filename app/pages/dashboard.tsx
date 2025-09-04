@@ -1,8 +1,8 @@
 import { Button, ButtonText } from "@/components/ui/button";
 import { Link, useRouter } from "expo-router";
 import { Text, View } from "react-native";
+import Footer2 from "../components/Footer2";
 import { styles } from "../components/ThemedText";
-
 export default function Dashboard() {
   const ticketsOuverts = 50;
   const ticketsFermes = 97;
@@ -55,11 +55,11 @@ export default function Dashboard() {
         </Text>
 
         {/* Nouveau bouton déconnexion placé ici */}
-        <View style={{ marginVertical: 16 }}>
+        {/* <View style={{ marginVertical: 16 }}>
           <Button className="bg-red-500" size="md" onPress={handleLogout}>
             <ButtonText>Se déconnecter</ButtonText>
           </Button>
-        </View>
+        </View> */}
 
         <Text style={styles.welcome}>Les tickets de votre entreprise :</Text>
 
@@ -82,14 +82,10 @@ export default function Dashboard() {
         <View style={styles.totalBox}>
           Total de tickets :<Text style={styles.total}>{totalTickets}</Text>
         </View>
-
-        <Text style={styles.footer}>
-          <Link href="/" style={styles.text01}>
-            Accueil {"\n"}
-          </Link>
-          © 2025 La Plateforme - Tous droits réservés
-        </Text>
       </View>
+      <>
+        <Footer2 />
+      </>
     </>
   );
 }

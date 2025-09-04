@@ -1,9 +1,9 @@
 import { Button, ButtonText } from "@/components/ui/button";
 import axios from "axios";
+import { Link } from "expo-router";
 import * as WebBrowser from "expo-web-browser";
 import React, { useState } from "react";
 import { Text, View } from "react-native";
-
 WebBrowser.maybeCompleteAuthSession();
 
 const API_BASE_URL = "https://ticketing.development.atelier.ovh/api/mobile";
@@ -28,11 +28,14 @@ export default function Index() {
         `${API_BASE_URL}/auth/google/callback`
       );
 
+      if (result.type === "success") {
+        // Fermeture de la fenêtre de navigation
+        WebBrowser.dismissBrowser();
+      }
+
       if (result.type !== "success") {
         throw new Error("Authentification annulée ou échouée");
       }
-
-      // 3. Le popup se ferme automatiquement, résultat contient l'URL de redirection
       // Extraire code OAuth de l'URL retournée
       const url = result.url;
       const codeMatch = url.match(/[?&]code=([^&]+)/);
@@ -62,8 +65,17 @@ export default function Index() {
 
   return (
     <View className="flex-1 justify-center items-center bg-white p-4">
-      <Text className="mb-8 text-2xl font-bold">Connexion Google</Text>
-      {error && <Text className="mb-4 text-red-600 font-medium">{error}</Text>}
+      <Text className="mb-4 text-3xl text-center">
+        Bienvenue sur la Plateforme !
+      </Text>
+
+      <Link
+        href="/pages/dashboard"
+        className="text-2xl underline text-blue-600 hover:text-red-600"
+      >
+        Accéder sans connexion
+      </Link>
+
       <Button
         className="bg-[#0062FF] px-8 py-3 rounded-md"
         size="md"
@@ -74,6 +86,11 @@ export default function Index() {
           {loading ? "Connexion en cours..." : "Se connecter avec Google"}
         </ButtonText>
       </Button>
+      {error && (
+        <Text className="mb-4 text-md text-red-600 font-medium mt-2">
+          {error}
+        </Text>
+      )}
     </View>
   );
 }
