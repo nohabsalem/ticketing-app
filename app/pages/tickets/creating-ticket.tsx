@@ -12,8 +12,7 @@ import {
 import { Text } from "@/components/ui/text";
 import { Link } from "expo-router";
 import { ScrollView, View } from "react-native";
-import { styles } from "../../components/ThemedText";
-
+import Footer from "../../components/Footer";
 const options = [
   { label: "Extrascolaire", value: "extrascolaire" },
   { label: "Innovation", value: "innovation" },
@@ -110,15 +109,7 @@ export default function CreatingTicket() {
           <ButtonText className="font-poppins">Soumettre</ButtonText>
         </Button>
       </Link>
-
-      <View className="mt-12">
-        <Text style={styles.footer} className="font-poppins text-center">
-          <Link href="/" style={styles.text01}>
-            Accueil{"\n"}
-          </Link>
-          © 2025 La Plateforme - Tous droits réservés
-        </Text>
-      </View>
+      <Footer />
     </ScrollView>
   );
 }

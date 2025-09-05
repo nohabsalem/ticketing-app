@@ -1,4 +1,3 @@
-import { styles } from "@/app/components/ThemedText";
 import { Input, InputField } from "@/components/ui/input";
 import {
   Select,
@@ -10,10 +9,10 @@ import {
   SelectTrigger,
 } from "@/components/ui/select";
 import { Text } from "@/components/ui/text";
-import { Link, useRouter } from "expo-router";
+import { useRouter } from "expo-router";
 import { useState } from "react";
 import { FlatList, ScrollView, TouchableOpacity, View } from "react-native";
-
+import Footer2 from "../../components/Footer";
 const options = [
   { label: "Priorité : (Urgent d'abord)", value: "urgent" },
   { label: "Priorité : (Important d'abord)", value: "important" },
@@ -133,16 +132,9 @@ export default function TicketList() {
           </TouchableOpacity>
         )}
       />
-
-      {/* Footer */}
-      <View className="mt-12">
-        <Text style={styles.footer} className="font-poppins text-center">
-          <Link href="/" style={styles.text01}>
-            Accueil{"\n"}
-          </Link>
-          © 2025 La Plateforme - Tous droits réservés
-        </Text>
-      </View>
+      <>
+        <Footer2 />
+      </>
     </ScrollView>
   );
 }

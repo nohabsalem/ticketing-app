@@ -2,8 +2,7 @@ import { Button, ButtonText } from "@/components/ui/button";
 import { Link, useLocalSearchParams } from "expo-router";
 import React, { useState } from "react";
 import { Modal, ScrollView, Text, TextInput, View } from "react-native";
-import { styles } from "../../components/ThemedText";
-
+import Footer from "../../components/Footer";
 export default function TicketDetail() {
   const { id, title, priority, date, description, attachment } =
     useLocalSearchParams();
@@ -160,14 +159,10 @@ export default function TicketDetail() {
             <ButtonText style={{ color: "white" }}>Fermer le ticket</ButtonText>
           </Button>
         </Link>
-
-        <Text style={[styles.footer, { textAlign: "center", marginTop: 30 }]}>
-          <Link href="/" style={styles.text01}>
-            Accueil{"\n"}
-          </Link>
-          © 2025 La Plateforme - Tous droits réservés
-        </Text>
       </View>
+      <>
+        <Footer />
+      </>
     </ScrollView>
   );
 }

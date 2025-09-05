@@ -1,5 +1,11 @@
-import { styles } from "@/app/components/ThemedText";
 import { Button, ButtonText } from "@/components/ui/button";
+import {
+  Checkbox,
+  CheckboxIcon,
+  CheckboxIndicator,
+  CheckboxLabel,
+} from "@/components/ui/checkbox";
+import { CheckIcon } from "@/components/ui/icon";
 import { Input, InputField } from "@/components/ui/input";
 import {
   Select,
@@ -11,7 +17,8 @@ import {
   SelectTrigger,
 } from "@/components/ui/select";
 import { Text } from "@/components/ui/text";
-import { Link, useRouter } from "expo-router";
+import { Footer } from "@expo/html-elements";
+import { useRouter } from "expo-router";
 import { useState } from "react";
 import {
   FlatList,
@@ -70,6 +77,7 @@ export default function TicketList() {
   const [modalVisible, setModalVisible] = useState(false);
   const [selectedUser, setSelectedUser] = useState<string | null>(null);
 
+  const [checked, setChecked] = useState(false);
   const router = useRouter();
 
   return (
@@ -175,6 +183,31 @@ export default function TicketList() {
         Historique des Tickets :
       </Text>
 
+      {/* Checkbox personnalisée */}
+      <View className="mb-4">
+        <Checkbox
+          isChecked={checked}
+          onChange={setChecked}
+          size="md"
+          isDisabled={false}
+          isInvalid={false}
+          value={""}
+        >
+          <CheckboxIndicator
+            style={{
+              borderColor: "#0062FF",
+              backgroundColor: "#fff",
+            }}
+            className="border-2 border-[#0062FF]"
+          >
+            <CheckboxIcon as={CheckIcon} style={{ color: "#0062FF" }} />
+          </CheckboxIndicator>
+          <CheckboxLabel className="font-poppins text-base">
+            Afficher uniquement mes tickets
+          </CheckboxLabel>
+        </Checkbox>
+      </View>
+
       {/* Recherche */}
       <Input className="mb-4">
         <InputField
@@ -246,15 +279,9 @@ export default function TicketList() {
         )}
       />
 
-      {/* Footer */}
-      <View className="mt-12">
-        <Text style={styles.footer} className="font-poppins text-center">
-          <Link href="/" style={styles.text01}>
-            Accueil{"\n"}
-          </Link>
-          © 2025 La Plateforme - Tous droits réservés
-        </Text>
-      </View>
+      <>
+        <Footer />
+      </>
     </ScrollView>
   );
 }

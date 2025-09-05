@@ -1,7 +1,7 @@
 import { Button, ButtonText } from "@/components/ui/button";
 import { Link, useRouter } from "expo-router";
 import { Text, View } from "react-native";
-import Footer2 from "../components/Footer2";
+import Footer from "../components/Footer";
 import { styles } from "../components/ThemedText";
 export default function Dashboard() {
   const ticketsOuverts = 50;
@@ -84,7 +84,7 @@ export default function Dashboard() {
         </View>
       </View>
       <>
-        <Footer2 />
+        <Footer />
       </>
     </>
   );
