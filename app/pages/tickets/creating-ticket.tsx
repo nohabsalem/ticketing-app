@@ -1,3 +1,5 @@
+// app/pages/tickets/CreatingTicket.tsx
+
 import { Button, ButtonText } from "@/components/ui/button";
 import { Input, InputField } from "@/components/ui/input";
 import {
@@ -11,8 +13,11 @@ import {
 } from "@/components/ui/select";
 import { Text } from "@/components/ui/text";
 import { Link } from "expo-router";
+import { useState } from "react";
 import { ScrollView, View } from "react-native";
 import Footer from "../../components/Footer";
+import { pickFile } from "../../hooks/upload";
+
 const options = [
   { label: "Extrascolaire", value: "extrascolaire" },
   { label: "Innovation", value: "innovation" },
@@ -32,6 +37,19 @@ const priorities = [
 ];
 
 export default function CreatingTicket() {
+  const [selectedFile, setSelectedFile] = useState<string | null>(null);
+
+  const handlePickFile = async () => {
+    const file = await pickFile();
+    if (file) {
+      setSelectedFile(file.assets?.[0]?.name ?? null); // stocke le nom du fichier
+    }
+  };
+
+  const handleRemoveFile = () => {
+    setSelectedFile(null);
+  };
+
   return (
     <ScrollView className="flex-1 bg-white p-6">
       <Text className="text-4xl font-poppinsSemiBold text-center text-blue-600 mb-8">
@@ -97,12 +115,26 @@ export default function CreatingTicket() {
         </SelectPortal>
       </Select>
 
-      <View className="flex-row items-center mb-6 gap-2">
+      <View className="flex-row items-center mb-2 gap-2">
         <Text className="font-poppins">Joindre un fichier : (optionnel)</Text>
-        <Button className="bg-[#0062FF]" size="sm" onPress={() => {}}>
+        <Button className="bg-[#0062FF]" size="sm" onPress={handlePickFile}>
           <ButtonText className="font-poppins">Parcourir...</ButtonText>
         </Button>
       </View>
+
+      {selectedFile && (
+        <View className="mb-6">
+          <Text className="font-poppins text-sm text-gray-600 mb-2">
+            Fichier choisi : {selectedFile}
+          </Text>
+
+          <Button className="bg-red-500" size="sm" onPress={handleRemoveFile}>
+            <ButtonText className="font-poppins">
+              Supprimer le fichier
+            </ButtonText>
+          </Button>
+        </View>
+      )}
 
       <Link href="/pages/tickets/ticket-list" asChild>
         <Button className="bg-[#0062FF]" size="sm">
