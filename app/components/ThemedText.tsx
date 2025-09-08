@@ -27,7 +27,7 @@ export const styles = StyleSheet.create({
   },
   text01: {
     fontSize: 16,
-    color: "#0062ff",
+    color: "#fff",
     fontWeight: "light",
     fontFamily: "poppins",
   },
@@ -200,6 +200,7 @@ export const styles = StyleSheet.create({
     color: "#888",
     textAlign: "center",
     width: "100%",
+    backgroundColor: "#0062ff",
   },
 
   ticketcontainer: {

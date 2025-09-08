@@ -14,3 +14,11 @@ local.properties
 
 # Bundle artifacts
 *.jsbundle
+
+# Secret files
+android/app/google-services.json
+android/app/client.json
+android/app/src/main/res/xml/preferences.xml
+android/app/src/main/res/xml/strings.xml
+
+# iOS
