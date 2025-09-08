@@ -9,9 +9,6 @@ export default function RootLayout() {
       <Stack
         screenOptions={{
           headerShown: true,
-          contentStyle: {
-            padding: 20,
-          },
         }}
       >
         <Stack.Screen
