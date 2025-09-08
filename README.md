@@ -14,7 +14,7 @@ Créée dans le but d'un stage en entreprise.
 - 🔐 Authentification utilisateur connexion via **__GOOGLE__**
 - 🆕 Création de tickets avec titre, description, priorité, etc.
 - 📋 Liste des tickets avec filtre (en cours, importance..)
-- 📝 Détails d’un ticket + possibilité de commenter ou mettre à jour
+- 📝 Détails d’un ticket + possibilité de commenter
 
 ## ⚙️ Installation & Lancement
 
@@ -23,6 +23,7 @@ Créée dans le but d'un stage en entreprise.
 ```bash
 git clone https://github.com/nohabsalem/ticketing-app
 cd app
+npm i
 npx expo start
 ```
 
