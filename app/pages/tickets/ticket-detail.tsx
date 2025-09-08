@@ -82,12 +82,12 @@ export default function TicketDetail() {
                     </Text>
                   </View>
                 </View>
-                <TouchableOpacity
+                {/* <TouchableOpacity
                   onPress={() => {}}
                   className="ml-2 px-3 py-1 bg-[#0062FF] rounded-lg"
                 >
                   <Text className="text-white text-sm">Répondre</Text>
-                </TouchableOpacity>
+                </TouchableOpacity> */}
               </View>
             </View>
           </View>
